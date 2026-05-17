@@ -1,0 +1,46 @@
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local runtime state
+/.hermes/
+/.aihaus/
+/.claude/
+/.codex/
+/.agents/
+/.aih-graph-consent
+
+# Env/secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies/build/cache
+node_modules/
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+target/
+vendor/
+.cache/
+tmp/
+coverage/
+*.log
+*.tmp
+*.bak
+
+# aih-graph local databases
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
