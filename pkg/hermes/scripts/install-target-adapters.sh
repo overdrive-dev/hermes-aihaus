@@ -31,7 +31,7 @@ find_ollama() {
   fi
   local candidates=(
     "/c/Users/vctrs/AppData/Local/Programs/Ollama/ollama.exe"
-    "$LOCALAPPDATA/Programs/Ollama/ollama.exe"
+    "${LOCALAPPDATA:-}/Programs/Ollama/ollama.exe"
     "/c/Program Files/Ollama/ollama.exe"
   )
   local p
