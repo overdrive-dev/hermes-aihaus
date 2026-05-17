@@ -83,8 +83,8 @@ Return:
 - Missing skill routing
 - Required Linear comment
 - Exact next actions
-- Promotion decision: stay in current state / return to TDD / create follow-up tasks / move to `Subida Dev` / move to `Review Dev` after verified Dev promotion
+- Promotion decision: stay in current state / return to TDD / create follow-up tasks / move to `Subida Dev` / move to `Review Dev` for Playwright validation / move to `Human Review` after verified Playwright screenshot evidence
 
 ## Block conditions
 
-Block if any touched layer lacks acceptance criteria, tests or verification, responsible agent/skill routing, or explicit non-applicability rationale. Also block promotion to `Subida Dev` if adversarial review is missing, automated test evidence is missing, target-environment operational evidence is missing, or unresolved failing tests do not have linked Linear follow-up tasks with clear owner layer and blocking status. `Review Dev` is a human gate after Dev promotion; automation may move an issue there with evidence but must not approve it or advance it to `Box Dev Features`.
+Block if any touched layer lacks acceptance criteria, tests or verification, responsible agent/skill routing, or explicit non-applicability rationale. Also block promotion to `Subida Dev` if adversarial review is missing, automated test evidence is missing, target-environment operational evidence is missing, or unresolved failing tests do not have linked Linear follow-up tasks with clear owner layer and blocking status. `Review Dev` is the automated Playwright browser-evidence gate after Dev promotion; block advancement to `Human Review` unless Playwright evidence proves the requested behavior and screenshot/printscreen evidence is attached or linked in Linear comments. `Human Review` is the human gate; automation may move an issue there with Playwright evidence but must not approve it or advance it to `Box Dev Features`.

@@ -21,31 +21,31 @@ Refactor the repository into the `hermes-aihaus` Hermes Agent workflow package. 
 - Existing legacy package consumers must migrate to Hermes.
 - Old smoke tests are replaced by Hermes-first validation.
 
-## ADR-260517-B: Dev promotion ends at human Review Dev
+## ADR-260517-B: Dev promotion flows through Playwright Review Dev then Human Review
 
 Date: 2026-05-17
 Status: Accepted
 
 ### Context
 
-Nora Care delivery exposed two workflow gaps that must be package-level hermes-aihaus behavior, not one-off local memory: Linear must be updated at every gate, and `Testes` must validate the real target environment rather than only local suites. After successful Dev promotion, product validation is not an agent review; it is a human review in Linear.
+Nora Care delivery exposed three workflow gaps that must be package-level hermes-aihaus behavior, not one-off local memory: Linear must be updated at every gate, `Testes` must validate the real target environment rather than only local suites, and Dev product validation should be automated with browser evidence before the human reviewer spends attention. After successful Dev promotion, agents should prove the requested behavior with Playwright first; humans review the resulting evidence in a separate Linear gate.
 
 ### Decision
 
 The automated hermes-aihaus delivery path is:
 
-`Execução TDD` -> `Review pós-execução` -> `Testes` -> `Subida Dev` -> `Review Dev`.
+`Execução TDD` -> `Review pós-execução` -> `Testes` -> `Subida Dev` -> `Review Dev` -> `Human Review` -> `Box Dev Features`.
 
-`Review Dev` is a human gate. Hermes/agents may move an issue into `Review Dev` after verified Dev promotion evidence is attached, but must not auto-approve it or move it onward. Human-approved work moves to `Box Dev Features`. Release/box codes such as `#01` and `#02` are metadata (labels/cycles) on issues in `Box Dev Features`, not separate workflow states by default.
+`Review Dev` is an automated Playwright gate. Hermes/agents may move an issue into `Review Dev` after verified Dev promotion evidence is attached, then must run Playwright against the Dev environment, validate the behavior-contract acceptance criteria, capture screenshot/printscreen evidence for relevant user-facing paths, and attach or link that evidence in Linear comments. If Playwright cannot prove the change, the issue returns to TDD or gets linked follow-up tasks. A passing Playwright review moves the issue to `Human Review`, which is the human product gate. Human-approved work moves to `Box Dev Features`. Release/box codes such as `#01` and `#02` are metadata (labels/cycles) on issues in `Box Dev Features`, not separate workflow states by default.
 
 For target repos with environment-specific gates, `Testes` must run against the contract's real target environment. For Nora Care, that target is dev/old-staging (`dev-api.noracare.com.br`) unless an issue explicitly says otherwise. AWS CodePipeline/CodeBuild, backend health, and frontend build metadata are valid Dev promotion evidence when GitHub Actions is not authoritative.
 
 ### Consequences
 
 + Linear remains the operational source of truth throughout execution, not a final summary sink.
-+ Human product validation is clearly separated from automated adversarial review.
++ Human product validation is clearly separated from automated adversarial review and automated Playwright Dev review.
 + Release grouping stays flexible and avoids cluttering team-wide Linear workflow states.
-- The workflow now requires target-repo-specific Dev evidence rules to be captured in behavior contracts or Stack Profiles.
+- The workflow now requires target-repo-specific Dev evidence rules, Playwright routes/personas, and screenshot attachment/linking strategy to be captured in behavior contracts or Stack Profiles.
 
 
 ## ADR-260517-C: Install/update owns Linear MCP and graph-memory bootstrap

@@ -28,8 +28,12 @@ require_grep 'Hermes Agent' "$ROOT/README.md" 'README declares Hermes Agent as t
 require_grep 'Linear' "$ROOT/README.md" 'README documents Linear source-of-truth workflow'
 require_grep 'Adversarial review' "$ROOT/README.md" 'README documents adversarial post-TDD review gate'
 require_grep 'Subida Dev' "$PKG/hermes/skills/hermes-aihaus-workflow/SKILL.md" 'workflow skill documents Dev promotion gate'
-require_grep 'Review Dev' "$PKG/hermes/skills/hermes-aihaus-workflow/SKILL.md" 'workflow skill documents human Review Dev gate'
+require_grep 'Playwright' "$PKG/hermes/skills/hermes-aihaus-workflow/SKILL.md" 'workflow skill documents Playwright auto-review gate'
+require_grep 'Human Review' "$PKG/hermes/skills/hermes-aihaus-workflow/SKILL.md" 'workflow skill documents Human Review gate'
+require_grep 'screenshot' "$PKG/hermes/skills/hermes-aihaus-workflow/SKILL.md" 'workflow skill requires screenshot evidence'
 require_grep 'Box Dev Features' "$PKG/hermes/skills/hermes-aihaus-execution/SKILL.md" 'execution skill documents Box Dev Features handoff'
+require_grep 'Playwright' "$PKG/hermes/skills/hermes-aihaus-execution/SKILL.md" 'execution skill documents Playwright validation'
+require_grep 'Human Review' "$PKG/hermes/skills/hermes-aihaus-execution/SKILL.md" 'execution skill documents Human Review handoff'
 require_grep 'follow-up tasks' "$PKG/hermes/skills/hermes-aihaus-execution/SKILL.md" 'execution skill documents failed-test follow-up tasks'
 reject_grep 'Claude Code workflow|Claude-Code-primary|/aih-(install|init|plan|feature|milestone|quick|resume|update|brainstorm|bugfix|close|effort|help|sync-notion)' "$ROOT/README.md" 'README no longer documents legacy Claude slash workflow'
 

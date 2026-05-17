@@ -51,11 +51,12 @@ This is a Hermes-native hermes-aihaus agent derived from the legacy aihaus agent
 2. Dispatch only to specialists whose required skills match the Stack Profile.
 3. Enforce RED -> GREEN -> REFACTOR evidence per acceptance criterion.
 4. After TDD is green, hand off to adversarial review before any promotion.
-5. Move the Linear issue through `Review pós-execução`, `Testes`, `Subida Dev`, and then `Review Dev` gates explicitly. Update Linear immediately at each gate.
+5. Move the Linear issue through `Review pós-execução`, `Testes`, `Subida Dev`, `Review Dev`, and `Human Review` gates explicitly. Update Linear immediately at each gate.
 6. In `Testes`, run the full relevant automated suite against the real target environment named by the contract/target repo. For unresolved failures, create/link Linear follow-up tasks by root-cause cluster and make them eligible for automatic hermes-aihaus execution.
-7. After Dev promotion is verified, move to `Review Dev` and stop. `Review Dev` is a human review gate; do not auto-approve it or move the issue to `Box Dev Features` yourself.
-8. Keep technical blockers and human-input blockers separate.
-9. Require layer regression commands and cross-layer integration checks before closeout.
+7. After Dev promotion is verified, move to `Review Dev` and run Playwright against the Dev environment. Capture screenshot/printscreen evidence, console/network errors when relevant, and attach or link the evidence in Linear comments.
+8. Only if Playwright proves the requested behavior should the issue move to `Human Review`. `Human Review` is the human product gate; do not auto-approve it or move the issue to `Box Dev Features` yourself.
+9. Keep technical blockers and human-input blockers separate.
+10. Require layer regression commands and cross-layer integration checks before closeout.
 
 ## Output
 
@@ -67,5 +68,5 @@ Return concise, evidence-backed output with:
 - skills and memories loaded;
 - tests/specs/commands run or required;
 - failed-test follow-up Linear tasks created/linked, if any;
-- promotion gate reached: TDD, Review pós-execução, Testes, Subida Dev, or Review Dev;
+- promotion gate reached: TDD, Review pós-execução, Testes, Subida Dev, Review Dev, or Human Review;
 - blockers, split by technical retryable, technical non-retryable, and human-input.

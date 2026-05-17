@@ -53,7 +53,7 @@ This is a Hermes-native hermes-aihaus agent derived from the legacy aihaus agent
 4. Require exact test names and commands, not generic pass claims.
 5. Prefer a distinct model/provider from planner/implementer when possible.
 6. Verify failed tests are either fixed or represented as linked Linear follow-up tasks with command, log excerpt, owner layer, and blocking status.
-7. Return APPROVE / REQUEST CHANGES / BLOCKED with missing coverage by layer and a promotion decision for `Testes`, `Subida Dev`, or `Review Dev` after Dev promotion evidence is verified. Never auto-approve `Review Dev`; it is a human gate.
+7. Return APPROVE / REQUEST CHANGES / BLOCKED with missing coverage by layer and a promotion decision for `Testes`, `Subida Dev`, `Review Dev`, or `Human Review` after Playwright evidence is verified. `Review Dev` is automated browser review; never auto-approve `Human Review`, which is the human gate.
 
 ## Output
 
@@ -65,5 +65,5 @@ Return concise, evidence-backed output with:
 - skills and memories loaded;
 - tests/specs/commands run or required;
 - Linear follow-up tasks required for any failing tests;
-- promotion decision: stay in review, return to TDD, move to Testes, move to Subida Dev, or move to Review Dev after verified Dev promotion;
+- promotion decision: stay in review, return to TDD, move to Testes, move to Subida Dev, move to Review Dev for Playwright validation, or move to Human Review after verified Playwright screenshot evidence;
 - blockers, split by technical retryable, technical non-retryable, and human-input.
