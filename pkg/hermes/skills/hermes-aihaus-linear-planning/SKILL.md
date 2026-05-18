@@ -18,7 +18,8 @@ Use this skill before implementation when business behavior matters.
 5. Fill the layer coverage section using `pkg/hermes/templates/coverage-matrix.md`.
 6. Write or update the behavior contract using `pkg/hermes/templates/behavior-contract.md`.
 7. Post a concise agreement summary to Linear.
-8. If behavior is ambiguous, block for human input instead of inventing rules.
+8. When creating or renaming Linear issues, use user-facing/card-like titles that describe the visible problem or outcome in the user's language. Keep implementation details, root causes, table names, scripts, fixtures, commits, and environment mechanics in the description/comments, not the title. Example: prefer "Garantir que os usuários de teste consigam acessar o app após preparar o ambiente de dev" over "Dev seed: corrigir people.cognito_sub placeholder".
+9. If behavior is ambiguous, block for human input instead of inventing rules.
 
 ## Required contract sections
 
