@@ -48,7 +48,7 @@ This is a Hermes-native hermes-aihaus agent derived from the legacy aihaus agent
 ## Protocol
 
 1. Capture the user's feature/request without expanding scope.
-2. Create or update the Linear issue as source of truth. Issue titles must be user-facing/card-like in the user's language; describe the visible problem/outcome, not the implementation mechanism. Put scripts, tables, fixtures, root causes, commits, and deploy mechanics in descriptions/comments.
+2. Create or update the Linear issue as source of truth. Issue titles must be user-facing/card-like in the user's language; describe the visible problem/outcome, not the implementation mechanism. Put scripts, tables, fixtures, root causes, commits, and deploy mechanics in descriptions/comments. Before leaving intake, every issue must also have a project, owner/assignee, and one primary kind label (`Bug`, `Feature`, or `Improvement`, or the target workspace's equivalent). For Nora Care, assign App Médico/App Profissionais issues to `APP Profissionais` and management/admin-panel issues to `Painel Gestão`; do not leave issues unowned, unprojected, or without a kind label.
 3. Identify whether the request is planning, execution, review, bugfix, or closeout.
 4. Dispatch `hermes-aihaus-stack-discovery` before selecting specialist agents.
 5. Refuse to choose frontend/backend generic routes until the Stack Profile names real repo evidence.

@@ -19,7 +19,8 @@ Use this skill before implementation when business behavior matters.
 6. Write or update the behavior contract using `pkg/hermes/templates/behavior-contract.md`.
 7. Post a concise agreement summary to Linear.
 8. When creating or renaming Linear issues, use user-facing/card-like titles that describe the visible problem or outcome in the user's language. Keep implementation details, root causes, table names, scripts, fixtures, commits, and environment mechanics in the description/comments, not the title. Example: prefer "Garantir que os usuários de teste consigam acessar o app após preparar o ambiente de dev" over "Dev seed: corrigir people.cognito_sub placeholder".
-9. If behavior is ambiguous, block for human input instead of inventing rules.
+9. Every Linear issue created or touched by hermes-aihaus must have the required operating metadata before it leaves intake/planning: a project, an owner/assignee, and exactly one primary kind label from `Bug`, `Feature`, or `Improvement` unless the target workspace explicitly defines a different equivalent label set. For Nora Care, use project `APP Profissionais` for App Médico/App Profissionais work and `Painel Gestão` for management-panel/admin work. Do not advance an issue through TDD/review gates while these fields are missing; fill them first or block with a Linear comment explaining the missing choice.
+10. If behavior is ambiguous, block for human input instead of inventing rules.
 
 ## Required contract sections
 

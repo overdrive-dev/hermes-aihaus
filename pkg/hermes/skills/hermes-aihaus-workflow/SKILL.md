@@ -12,7 +12,7 @@ Use this skill when the user wants hermes-aihaus to turn a feature conversation 
 ## Protocol
 
 1. Load project context from `AGENTS.md`, `DECISIONS.md`, and aih-graph query results. The hermes-aihaus installers bootstrap `aih-graph`; agents must refresh/query memory themselves when the index is stale instead of asking the user for setup commands. Prefer semantic retrieval automatically when local Ollama `nomic-embed-text` is available; otherwise use hybrid BM25/FTS5.
-2. Ensure the Linear issue exists or create/update it through Hermes Linear tooling/MCP. Prefer native Hermes MCP tools with the `mcp_linear_*` prefix when present; fall back to the direct Linear GraphQL skill only when MCP is unavailable. The package installer configures `mcp_servers.linear` with `npx -y @hatcloud/linear-mcp` and `${LINEAR_API_KEY}`/`${LINEAR_ACCESS_TOKEN}` interpolation.
+2. Ensure the Linear issue exists or create/update it through Hermes Linear tooling/MCP. Prefer native Hermes MCP tools with the `mcp_linear_*` prefix when present; fall back to the direct Linear GraphQL skill only when MCP is unavailable. The package installer configures `mcp_servers.linear` with `npx -y @hatcloud/linear-mcp` and `${LINEAR_API_KEY}`/`${LINEAR_ACCESS_TOKEN}` interpolation. Before starting or advancing workflow gates, verify the issue has a project, owner/assignee, and one primary kind label (`Bug`, `Feature`, or `Improvement`, or the target workspace's equivalent); set the missing metadata first or block with a Linear comment.
 3. Invoke `hermes-aihaus-stack-discovery` in the target repo before choosing implementation agents. The result must name real services/frameworks, test commands, touched production layers, required skills, and Hermes-native agent definitions from `pkg/hermes/agents/`.
 4. Invoke `hermes-aihaus-linear-planning` to produce a behavior contract before implementation.
 5. Invoke `hermes-aihaus-memory` to retrieve related rules, decisions, prior gotchas, and contracts.
@@ -68,3 +68,4 @@ Resolve agent `required_memory` through `pkg/hermes/templates/agent-context-cont
 - Do not create workflow states such as `Box Dev #01` / `Box Dev #02` by default; use `Box Dev Features` plus release metadata labels/cycles for the code.
 - Keep technical blockers separate from human-input blockers.
 - Treat Linear as the operational source of truth; use Linear MCP automatically when available and never ask the user to run separate Linear setup during an hermes-aihaus task.
+- Do not leave Linear issues without required operating metadata: project, owner/assignee, and one primary kind label (`Bug`, `Feature`, or `Improvement`, or the target workspace's equivalent) are mandatory for intake, planning, execution, review, and follow-up tasks.
